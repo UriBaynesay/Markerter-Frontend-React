@@ -40,6 +40,6 @@ async function ajax(endpoint, method = 'GET', data = null) {
             sessionStorage.clear()
             window.location.assign('/')
         }
-        throw err
+        throw err.response
     }
 }
