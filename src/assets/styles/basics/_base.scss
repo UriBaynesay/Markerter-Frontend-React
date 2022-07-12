@@ -2,11 +2,6 @@
     box-sizing: border-box;
 }
 
-::selection {
-    background-color: $clr1;
-    color: $clr6;
-}
-
 html {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     line-height: 1.6;
