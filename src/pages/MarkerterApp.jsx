@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { useState } from "react"
 
 import { FormsInfo } from "../cmp/forms-info"
@@ -7,10 +8,23 @@ import { markerterService } from "../services/markerter.service"
 export const MarkerterApp = () => {
   const [formsCount, setFormsCount] = useState(0)
 
+  useEffect(() => {
+    loadFormsCount()
+  }, [])
+
+  const loadFormsCount = async () => {
+    try {
+      const forms = await markerterService.getFormsCount()
+      setFormsCount(forms)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   const onSubmit = async (form) => {
     try {
-      const savedForm = await markerterService.addForm(form)
-      setFormsCount(formsCount+1)
+      await markerterService.addForm(form)
+      setFormsCount(formsCount + 1)
     } catch (error) {
       console.error(error)
     }
